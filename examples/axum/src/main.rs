@@ -64,7 +64,19 @@ fn main() {
         .instrument(info_span!("client")),
     );
 
+    // No failure case
     sim.run().unwrap();
+
+    // // Failure case
+    // sim.hold("server", "client");
+    // let _ = sim.step().unwrap();
+    // for _ in 0 .. 100 {
+    //     let _ = sim.step().unwrap();
+    // }
+    // println!("elapsed time so far: {:?}", sim.elapsed());
+    // sim.release("server", "client");
+    // sim.run().unwrap();
+    // println!("elapsed time so far: {:?}", sim.elapsed());
 }
 
 mod connector {
