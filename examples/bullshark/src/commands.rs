@@ -1,6 +1,7 @@
-use utils::PathMaker;
+use crate::utils::PathMaker;
 
-pub(crate) struct CommandMaker;
+const NODE: &str = "./../target/debug/node";
+pub struct CommandMaker;
 
 impl CommandMaker {
     pub fn cleanup() -> String {
@@ -18,7 +19,7 @@ impl CommandMaker {
     }
 
     pub fn compile() -> String {
-        "cargo build"
+        "cargo build".to_string()
     }
 
     pub fn generate_key(filename: &str) -> String {

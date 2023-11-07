@@ -1,22 +1,22 @@
 use std::path::Path;
 
-pub(crate) struct PathMaker;
+pub struct PathMaker;
 
 impl PathMaker {
     pub fn binary_path() -> String {
-        Path::new("..").join("target").join("release")
+        Path::new("..").join("target").join("release").into_os_string().into_string().unwrap()
     }
 
     pub fn node_crate_path() -> String {
-        Path::new("..").join("node")
+        Path::new("..").join("node").into_os_string().into_string().unwrap()
     }
 
     pub fn committee_file() -> String {
-        ".committee.json"
+        ".committee.json".to_string()
     }
 
     pub fn parameters_file() -> String {
-        ".parameters.json"
+        ".parameters.json".to_string()
     }
 
     pub fn key_file(i: usize) -> String {
@@ -24,12 +24,12 @@ impl PathMaker {
     }
 
     pub fn db_path(i: usize, j: Option<usize>) -> String {
-        let worker_id = if Some(j) { format("-{}", j) } else { "" };
+        let worker_id = if let Some(j) = j { format!("-{}", j) } else { "".to_string() };
         format!(".db-{}{}", i, worker_id)
     }
 
     pub fn logs_path() -> String {
-        "logs"
+        "logs".to_string()
     }
 
     pub fn primary_log_file(i: usize) -> String {
